@@ -1,0 +1,24 @@
+{
+  "name": "rubik-cube",
+  "version": "1.0.0",
+  "description": "Rubik's cube with THREE.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diakov94/rubik-cube.git"
+  },
+  "keywords": [
+    "Rubik's",
+    "cube",
+    "THREE"
+  ],
+  "author": "Andrii Diakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diakov94/rubik-cube/issues"
+  },
+  "homepage": "https://github.com/Diakov94/rubik-cube#readme"
+}
