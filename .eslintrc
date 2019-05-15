@@ -16,6 +16,7 @@
         "functions": false,
         "classes": false
       }
-    ]
+    ],
+    "no-return-assign": "off"
   }
 }
