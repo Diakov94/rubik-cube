@@ -41,18 +41,21 @@ class Cube {
     this.currentSide = FRONT;
     tween.onStart(() => {
       this.currentSide = randomSide();
+      this.rnd = ['x', 'y', 'z'][Math.floor(Math.random() * 3)];
+      this.rndDir = [1 / 2, 2, 1, -1 / 2, -2, -1][Math.floor(Math.random() * 3)];
+      this.prevPos = this.cube.rotation[this.rnd];
     });
     tween.to({ alpha: 1 });
-    // tween.onUpdate(({ alpha }) => {
-    //   this.
-    // });
+    tween.onUpdate(({ alpha }) => {
+      this.cube.rotation[this.rnd] = this.prevPos + (Math.PI * this.rndDir * alpha);
+    });
     tween.onComplete((rate) => {
       // eslint-disable-next-line no-param-reassign
       rate.alpha = 0;
     });
     setInterval(() => {
       tween.start();
-    }, 4000);
+    }, 1500);
   }
 
   // update = () => {
