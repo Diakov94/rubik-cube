@@ -1,17 +1,28 @@
 import { Object3D } from 'three';
+import TWEEN from '@tweenjs/tween.js';
 import piece from './piece';
 import { SIZE_OF_PIECE } from './constants/pieceGeometry';
 import cube3x3 from './constants/cube3x3';
+import getSide from './utils/getSide';
+import {
+  FRONT, BACK, TOP, BOTTOM, LEFT, RIGHT,
+} from './constants/sideTypes';
 
 const SIZE_OF_PIECE_WITH_GAPS = SIZE_OF_PIECE * 1.01;
+const arr = [FRONT, BACK, TOP, BOTTOM, LEFT, RIGHT];
+function randomSide() {
+  return arr[Math.floor(Math.random() * 6)];
+}
 
 class Cube {
   constructor() {
     this.container = new Object3D();
     this.cube = new Object3D();
     this.container.add(this.cube);
+    this.pieces = new Array(26);
     cube3x3.colors.forEach((colors, index) => {
       const elem = piece(colors);
+      this.pieces[index] = elem;
       this.cube.add(elem);
       const [x, y, z] = cube3x3.relativePosition[index];
       elem.position.set(
@@ -20,7 +31,33 @@ class Cube {
         SIZE_OF_PIECE_WITH_GAPS * z,
       );
     });
+    this[FRONT] = getSide(FRONT, this.pieces);
+    this[BACK] = getSide(BACK, this.pieces);
+    this[TOP] = getSide(TOP, this.pieces);
+    this[BOTTOM] = getSide(BOTTOM, this.pieces);
+    this[LEFT] = getSide(LEFT, this.pieces);
+    this[RIGHT] = getSide(RIGHT, this.pieces);
+    const tween = new TWEEN.Tween({ alpha: 0 });
+    this.currentSide = FRONT;
+    tween.onStart(() => {
+      this.currentSide = randomSide();
+    });
+    tween.to({ alpha: 1 });
+    // tween.onUpdate(({ alpha }) => {
+    //   this.
+    // });
+    tween.onComplete((rate) => {
+      // eslint-disable-next-line no-param-reassign
+      rate.alpha = 0;
+    });
+    setInterval(() => {
+      tween.start();
+    }, 4000);
   }
+
+  // update = () => {
+  //   console.log(1);
+  // };
 }
 
 export default new Cube();
