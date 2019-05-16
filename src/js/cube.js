@@ -43,9 +43,9 @@ class Cube {
       this.currentSide = randomSide();
     });
     tween.to({ alpha: 1 });
-    tween.onUpdate(({ alpha }) => {
-      this.
-    });
+    // tween.onUpdate(({ alpha }) => {
+    //   this.
+    // });
     tween.onComplete((rate) => {
       // eslint-disable-next-line no-param-reassign
       rate.alpha = 0;
@@ -55,9 +55,9 @@ class Cube {
     }, 4000);
   }
 
-  update = () => {
-    console.log(1);
-  };
+  // update = () => {
+  //   console.log(1);
+  // };
 }
 
 export default new Cube();
