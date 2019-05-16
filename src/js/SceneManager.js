@@ -57,7 +57,6 @@ export default function SceneManager(root) {
   function buildControls() {
     return new OrbitControls(camera);
   }
-
   function buildLights() {
     buildPointLight().position.set(2500, 1500, 2500);
     buildPointLight().position.set(2500, 1500, -2500);
